@@ -116,21 +116,21 @@ The models are trained on raw audio files. However, the audio files need to be p
 ### **Accuracy Comparison**
 A visual comparison of model accuracies across MobileNet, YAMNet, RawNet, and the proposed ElephantCallerNet, demonstrating the superior performance of raw-audio-based training.
 
-<img src="results/accuracy_comparison.png" alt="Accuracy Comparison" width="80%"/>
+<img src="./accuracy_comparison.png" alt="Accuracy Comparison" width="50%"/>
 
 ---
 
 ### **Performance Comparison — Direct Raw Audio Classification**
 A detailed breakdown of performance metrics (accuracy) showing the advantages of processing raw waveforms over spectrogram-based approaches.
 
-<img src="results/performance_comparison_raw.png" alt="Performance Comparison Raw Audio" width="80%"/>
+<img src="./performance_comparison_raw.png" alt="Performance Comparison Raw Audio" width="50%"/>
 
 ---
 
 ### **Elephant Monitoring System — Web Application**
 A system-level diagram of the end-to-end monitoring platform developed in this study, including audio capture, processing, classification, and dashboard visualization.
 
-<img src="results/elephant_monitoring_system.png" alt="Elephant Monitoring System Web App" width="80%"/>
+<img src="./elephant_monitoring_system.png" alt="Elephant Monitoring System Web App" width="50%"/>
 
 </div>
 
