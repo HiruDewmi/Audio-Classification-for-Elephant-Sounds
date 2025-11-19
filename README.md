@@ -1,14 +1,48 @@
-# Audio_Classification_for_Elephant_Voice
+# Elephant Sound Classification Using Raw Audio
+## Lightweight Machine Learning Models for Bioacoustic Monitoring
 
-# Raw Audio Processing with Machine Learning Models
+Associated Research Paper:
+🔗 Elephant Sound Classification Using Deep Learning Optimization
+https://doi.org/10.3390/s25020352
 
-In this project, we explore various machine learning models suitable for raw audio processing.
+## Research Overview
 
-## Dataset
-Our dataset comprises recordings of three caller types of elephants:
-- Rumble
-- Roar
-- Trumpet
+This repository contains the full implementation, scripts, and datasets used in our study on **raw-audio-based elephant vocalization classification**, published in *Sensors (MDPI), 2025*.  
+The research focuses on developing efficient machine learning models that operate directly on **raw waveforms**, enabling deployment on **resource-constrained edge devices** for real-time wildlife monitoring.
+
+We classify three elephant caller types:
+
+- **Rumble**  
+- **Roar**  
+- **Trumpet**
+
+Our results demonstrate that **raw audio processing outperforms spectrogram-based pipelines**, achieving higher accuracy while reducing computational overhead.
+
+## Dataset Availability
+
+This project uses two sources of elephant vocalization data:
+
+### 1. Classified Dataset (Included in This Repository)
+
+A curated and pre-labeled dataset containing the three caller types:
+
+- **Rumble**
+- **Roar**
+- **Trumpet**
+
+**Access the Dataset:**  
+👉 [Click here to open the dataset directory](./data)
+
+
+The dataset is organized into:
+```bash
+dataset/
+├── train/
+├── val/
+└── test/
+```
+All files are **preprocessed and standardized to 6-second waveform clips**.  
+This complete classified dataset is included directly within this GitHub repository.
 
 ## Used Models
 We experimented with the following models:
@@ -33,10 +67,78 @@ The models are trained on raw audio files. However, the audio files need to be p
       - If the audio file is greater than 8 seconds, it is segmented into equal length sizes and padded or trimmed to make each segment 6 seconds.
       - Audio files with a duration less than 2 seconds are avoided.
 
-#Environment Setup
+## Pipeline Diagram
+                   ┌────────────────────────┐
+                   │   Raw Audio Dataset    │
+                   │ (Rumble / Roar / Trumpet) 
+                   └──────────────┬─────────┘
+                                  │
+                                  ▼
+                     ┌────────────────────────┐
+                     │   Pre-processing       │
+                     │  - Trim / Pad to 6 sec │
+                     │  - Segment > 8 sec     │
+                     │  - Remove < 2 sec      │
+                     └──────────────┬─────────┘
+                                  │
+                                  ▼
+              ┌────────────────────────────────────────┐
+              │      Model Training (Raw Waveforms)     │
+              │  MobileNet • YAMNet • RawNet • ElephantCallerNet
+              └──────────────┬─────────────────────────┘
+                                  │
+                                  ▼
+                     ┌────────────────────────┐
+                     │       Evaluation        │
+                     │  Accuracy & Metrics     │
+                     └──────────────┬─────────┘
+                                  │
+                                  ▼
+                     ┌────────────────────────┐
+                     │       Inference         │
+                     │ Predict caller type     │
+                     └────────────────────────┘
+
+
+## Key Results
+<div align="center">
+   
+### Raw Audio Classification Accuracy
+| Model                            | Training Approach | Input Type | Accuracy |
+| -------------------------------- | ----------------- | ---------- | -------- |
+| **MobileNet V2**                 | Fine-tuned        | Raw        | 82%      |
+| **YAMNet**                       | From scratch      | Raw        | 78%      |
+| **RawNet**                       | From scratch      | Raw        | 84%      |
+| **ElephantCallerNet (Proposed)** | From scratch      | Raw        | **89%**  |
+
+---
+
+### **Accuracy Comparison**
+A visual comparison of model accuracies across MobileNet, YAMNet, RawNet, and the proposed ElephantCallerNet, demonstrating the superior performance of raw-audio-based training.
+
+<img src="results/accuracy_comparison.png" alt="Accuracy Comparison" width="80%"/>
+
+---
+
+### **Performance Comparison — Direct Raw Audio Classification**
+A detailed breakdown of performance metrics (accuracy, precision, recall, F1-score) showing the advantages of processing raw waveforms over spectrogram-based approaches.
+
+<img src="results/performance_comparison_raw.png" alt="Performance Comparison Raw Audio" width="80%"/>
+
+---
+
+### **Elephant Monitoring System — Web Application**
+A system-level diagram of the end-to-end monitoring platform developed in this study, including audio capture, processing, classification, and dashboard visualization.
+
+<img src="results/elephant_monitoring_system.png" alt="Elephant Monitoring System Web App" width="80%"/>
+
+</div>
+
+
+## Environment Setup
 To ensure a consistent environment for running the script, we have included an environment.yml file. This file can be used to set up a conda environment with all necessary dependencies.
 
-##Steps to Set Up the Environment
+## Steps to Set Up the Environment
 1. **Install Conda:**
    - If you don't have conda installed, download and install it from [Anaconda](https://www.anaconda.com/products/distribution) or [Miniconda](https://docs.conda.io/en/latest/miniconda.html).
 
@@ -74,4 +176,39 @@ After you have created or pre-processed your audio files, you can directly pass 
 ```bash
 python inference.py mobilenet /path/to/your/audio/file.wav
 ```
-Replace 'mobilnet' with your preference model. This project is supporting 04 models, namely; Mobilnet, YAMNet, RawNet, and ACDNet
+Replace 'mobilnet' with your preference model. This project is supporting 04 models, namely; Mobilnet, YAMNet, RawNet, and ElephantCallerNet
+
+## Citation
+
+If you use this repository or the associated publication, please cite:
+
+#### MDPI / ACS Style
+Dewmini, H.; Meedeniya, D.; Perera, C. Elephant Sound Classification Using Deep Learning Optimization. Sensors 2025, 25, 352. https://doi.org/10.3390/s25020352
+
+#### AMA Style
+Dewmini H, Meedeniya D, Perera C. Elephant Sound Classification Using Deep Learning Optimization. Sensors. 2025; 25(2):352. https://doi.org/10.3390/s25020352
+
+#### Chicago/Turabian Style
+Dewmini, Hiruni, Dulani Meedeniya, and Charith Perera.
+2025. "Elephant Sound Classification Using Deep Learning Optimization." Sensors 25, no. 2: 352. https://doi.org/10.3390/s25020352
+
+#### APA Style
+Dewmini, H., Meedeniya, D., & Perera, C. (2025).
+Elephant Sound Classification Using Deep Learning Optimization. Sensors, 25(2), 352. https://doi.org/10.3390/s25020352
+
+## BibTeX
+```bash
+@Article{s25020352,
+  AUTHOR = {Dewmini, Hiruni and Meedeniya, Dulani and Perera, Charith},
+  TITLE = {Elephant Sound Classification Using Deep Learning Optimization},
+  JOURNAL = {Sensors},
+  VOLUME = {25},
+  YEAR = {2025},
+  NUMBER = {2},
+  ARTICLE-NUMBER = {352},
+  URL = {https://doi.org/10.3390/s25020352},
+  DOI = {10.3390/s25020352}
+}
+```
+
+
