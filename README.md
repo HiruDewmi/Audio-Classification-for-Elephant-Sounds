@@ -121,7 +121,7 @@ A visual comparison of model accuracies across MobileNet, YAMNet, RawNet, and th
 ---
 
 ### **Performance Comparison — Direct Raw Audio Classification**
-A detailed breakdown of performance metrics (accuracy, precision, recall, F1-score) showing the advantages of processing raw waveforms over spectrogram-based approaches.
+A detailed breakdown of performance metrics (accuracy) showing the advantages of processing raw waveforms over spectrogram-based approaches.
 
 <img src="results/performance_comparison_raw.png" alt="Performance Comparison Raw Audio" width="80%"/>
 
